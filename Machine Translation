@@ -1,0 +1,12 @@
+from deep_translator import GoogleTranslator
+
+# User input
+text = input("Enter English text: ")
+
+translated = GoogleTranslator(
+    source='english',
+    target='hindi'
+).translate(text)
+
+print("\nTranslated Text:")
+print(translated)
