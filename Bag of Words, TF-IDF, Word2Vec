@@ -1,0 +1,57 @@
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from gensim.models import Word2Vec
+
+# User input
+text = input("Enter sentences separated by comma: ")
+
+# Convert into list
+documents = text.split(",")
+
+# Bag of Words
+print("\nBag of Words")
+
+vectorizer = CountVectorizer()
+
+X = vectorizer.fit_transform(documents)
+
+print("Words:")
+print(vectorizer.get_feature_names_out())
+
+print("Matrix:")
+print(X.toarray())
+
+# Normalized Count
+print("\nNormalized Count")
+
+normalized = X.toarray() / X.toarray().sum(axis=1, keepdims=True)
+
+print(normalized)
+
+# TF-IDF
+print("\nTF-IDF")
+
+tfidf = TfidfVectorizer()
+
+tfidf_matrix = tfidf.fit_transform(documents)
+
+print(tfidf_matrix.toarray())
+
+# Word2Vec
+print("\nWord2Vec")
+
+sentences = [doc.split() for doc in documents]
+
+model = Word2Vec(
+    sentences,
+    vector_size=5,
+    window=2,
+    min_count=1
+)
+
+word = input("\nEnter word for embedding: ")
+
+if word in model.wv:
+    print(model.wv[word])
+else:
+    print("Word not found")
