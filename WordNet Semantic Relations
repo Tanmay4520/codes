@@ -1,0 +1,30 @@
+import nltk
+from nltk.corpus import wordnet
+
+nltk.download('wordnet')
+
+# User input
+word = input("Enter a word: ")
+
+synsets = wordnet.synsets(word)
+
+# Synonyms
+print("\nSynonyms:")
+
+for syn in synsets:
+    for lemma in syn.lemmas():
+        print(lemma.name())
+
+# Antonyms
+print("\nAntonyms:")
+
+for syn in synsets:
+    for lemma in syn.lemmas():
+        if lemma.antonyms():
+            print(lemma.antonyms()[0].name())
+
+# Hypernyms
+print("\nHypernyms:")
+
+for syn in synsets:
+    print(syn.hypernyms())
