@@ -1,7 +1,7 @@
-# Import libraries
+# Import library
 import nltk
 
-# Download required datasets
+# Download required files
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
@@ -19,42 +19,37 @@ from nltk.stem import SnowballStemmer
 # Import lemmatizer
 from nltk.stem import WordNetLemmatizer
 
-# Input text
-text = "Hello! My name is Tanmay. I love Natural Language Processing and machine-learning."
+# Take input from user
+text = input("Enter a sentence: ")
 
-print("Original Text:")
+print("\nOriginal Text:")
 print(text)
 
 # 1. Whitespace Tokenization
 print("\n1. Whitespace Tokenization")
-whitespace_tokens = text.split()
-print(whitespace_tokens)
+print(text.split())
 
-# 2. Punctuation-based Tokenization
-print("\n2. Punctuation-based Tokenization")
-punct_tokens = word_tokenize(text)
-print(punct_tokens)
+# 2. Punctuation Tokenization
+print("\n2. Punctuation Tokenization")
+print(word_tokenize(text))
 
 # 3. Treebank Tokenization
 print("\n3. Treebank Tokenization")
 treebank = TreebankWordTokenizer()
-treebank_tokens = treebank.tokenize(text)
-print(treebank_tokens)
+print(treebank.tokenize(text))
 
 # 4. Tweet Tokenization
 print("\n4. Tweet Tokenization")
 tweet = TweetTokenizer()
-tweet_tokens = tweet.tokenize(text)
-print(tweet_tokens)
+print(tweet.tokenize(text))
 
 # 5. MWE Tokenization
 print("\n5. MWE Tokenization")
-mwe = MWETokenizer([('Natural', 'Language'), ('machine-learning',)])
-mwe_tokens = mwe.tokenize(text.split())
-print(mwe_tokens)
+mwe = MWETokenizer([('machine', 'learning')])
+print(mwe.tokenize(text.split()))
 
-# Stemming
-words = ["running", "playing", "easily", "fairly"]
+# Stemming words
+words = text.split()
 
 # Porter Stemmer
 print("\n6. Porter Stemming")
