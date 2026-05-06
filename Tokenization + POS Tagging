@@ -1,0 +1,19 @@
+import nltk
+
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
+# User input
+text = input("Enter sentence: ")
+
+# Tokenization
+tokens = nltk.word_tokenize(text)
+
+print("\nTokens:")
+print(tokens)
+
+# POS tagging
+tags = nltk.pos_tag(tokens)
+
+print("\nPOS Tags:")
+print(tags)
