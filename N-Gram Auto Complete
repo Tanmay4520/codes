@@ -1,0 +1,28 @@
+from nltk.util import ngrams
+from collections import Counter
+
+# User input
+text = input("Enter sentence: ")
+
+tokens = text.split()
+
+# Create bigrams
+bigrams = list(ngrams(tokens, 2))
+
+print("\nBigrams:")
+print(bigrams)
+
+# Count frequency
+freq = Counter(bigrams)
+
+print("\nFrequency:")
+print(freq)
+
+# Input word
+word = input("\nEnter word for prediction: ")
+
+print("\nSuggestions:")
+
+for bg in freq:
+    if bg[0] == word:
+        print(bg[1])
