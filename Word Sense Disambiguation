@@ -1,0 +1,16 @@
+from nltk.wsd import lesk
+from nltk.tokenize import word_tokenize
+
+# User input
+sentence = input("Enter sentence: ")
+
+word = input("Enter ambiguous word: ")
+
+# Find meaning
+sense = lesk(word_tokenize(sentence), word)
+
+print("\nWord Sense:")
+print(sense)
+
+print("\nMeaning:")
+print(sense.definition())
