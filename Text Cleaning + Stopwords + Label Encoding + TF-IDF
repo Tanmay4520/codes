@@ -1,0 +1,65 @@
+import nltk
+import pandas as pd
+
+nltk.download('stopwords')
+nltk.download('wordnet')
+
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+
+from sklearn.preprocessing import LabelEncoder
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# User input
+text = input("Enter text: ")
+
+# Lowercase
+text = text.lower()
+
+print("\nLowercase:")
+print(text)
+
+# Remove stopwords
+stop_words = set(stopwords.words('english'))
+
+filtered = []
+
+for word in text.split():
+    if word not in stop_words:
+        filtered.append(word)
+
+clean_text = " ".join(filtered)
+
+print("\nAfter Stopword Removal:")
+print(clean_text)
+
+# Lemmatization
+lemmatizer = WordNetLemmatizer()
+
+lemmatized = []
+
+for word in clean_text.split():
+    lemmatized.append(lemmatizer.lemmatize(word))
+
+final_text = " ".join(lemmatized)
+
+print("\nLemmatized Text:")
+print(final_text)
+
+# Label Encoding
+labels = ["positive", "negative", "neutral"]
+
+encoder = LabelEncoder()
+
+encoded = encoder.fit_transform(labels)
+
+print("\nEncoded Labels:")
+print(encoded)
+
+# TF-IDF
+tfidf = TfidfVectorizer()
+
+X = tfidf.fit_transform([final_text])
+
+print("\nTF-IDF Matrix:")
+print(X.toarray())
